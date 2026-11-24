@@ -1,0 +1,232 @@
+:root {
+  --blanco: #ffffff;
+  --negro: #000000;
+  --gris: #6b6b6b;
+  --linea: #000000;
+  --fuente: "Archivo", "Helvetica Neue", Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--blanco);
+  color: var(--negro);
+  font-family: var(--fuente);
+  line-height: 1.5;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+/* Panel del formulario (blanco) */
+.panel {
+  padding: 4rem 3rem;
+  max-width: 560px;
+  width: 100%;
+  margin-left: auto;
+}
+
+h1 {
+  margin: 0 0 0.75rem;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.05;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.intro {
+  margin: 0 0 2.5rem;
+  color: var(--gris);
+  max-width: 42ch;
+}
+
+.grupo {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.25rem;
+}
+
+.fila {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 1rem;
+}
+
+label,
+legend {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+  padding: 0;
+}
+
+input {
+  font: inherit;
+  color: var(--negro);
+  background: var(--blanco);
+  border: 0;
+  border-bottom: 2px solid var(--linea);
+  border-radius: 0;
+  padding: 0.5rem 0;
+  width: 100%;
+}
+
+input::placeholder {
+  color: #9a9a9a;
+}
+
+input:focus-visible {
+  outline: 3px solid var(--negro);
+  outline-offset: 3px;
+}
+
+fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0 0 1.25rem;
+}
+
+.notas {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+}
+
+.error {
+  min-height: 1.5rem;
+  margin: 0 0 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.acciones {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.boton {
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0.85rem 1.75rem;
+  border: 2px solid var(--negro);
+  background: var(--negro);
+  color: var(--blanco);
+  border-radius: 0;
+  transition: background 0.15s, color 0.15s;
+}
+
+.boton:hover {
+  background: var(--blanco);
+  color: var(--negro);
+}
+
+.boton.secundario {
+  background: var(--blanco);
+  color: var(--negro);
+}
+
+.boton.secundario:hover {
+  background: var(--negro);
+  color: var(--blanco);
+}
+
+.boton:focus-visible {
+  outline: 3px solid var(--negro);
+  outline-offset: 3px;
+}
+
+/* Panel del resultado (negro) */
+.resultado {
+  background: var(--negro);
+  color: var(--blanco);
+  display: flex;
+  align-items: center;
+  padding: 4rem 3rem;
+}
+
+.vacio {
+  margin: 0;
+  color: #bdbdbd;
+  font-size: 1.1rem;
+}
+
+.contenido[hidden] {
+  display: none;
+}
+
+.veredicto {
+  margin: 0;
+  font-size: clamp(3.5rem, 9vw, 7rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+
+.detalle {
+  margin: 1.5rem 0 2rem;
+  font-size: 1.15rem;
+  max-width: 36ch;
+}
+
+.promedio {
+  display: inline-block;
+  margin: 0;
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--blanco);
+  font-size: 1.1rem;
+}
+
+.promedio strong {
+  font-size: 1.4rem;
+  margin-left: 0.4rem;
+}
+
+/* Cuando reprueba, el resultado se invierte a blanco */
+.resultado.reprobo {
+  background: var(--blanco);
+  color: var(--negro);
+  border-left: 2px solid var(--negro);
+}
+
+.resultado.reprobo .promedio {
+  border-color: var(--negro);
+}
+
+/* Móvil */
+@media (max-width: 800px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .panel {
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+  }
+
+  .resultado {
+    padding: 3rem 1.5rem;
+    min-height: 280px;
+  }
+
+  .resultado.reprobo {
+    border-left: 0;
+    border-top: 2px solid var(--negro);
+  }
+
+  .notas {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .boton {
+    transition: none;
+  }
+}
